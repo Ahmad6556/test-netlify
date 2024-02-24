@@ -3,9 +3,13 @@ const app = express()
 const port = 3000 || process.env.PORT
 const azzaih = require("./models/azzaih");
 const mlass = require("./models/mlass");
+const bodyParser = require('body-parser');
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'))
 app.set('view engine', 'ejs')
+
 
 // auto Refresh
 
@@ -152,3 +156,7 @@ app.get("/sfuv", (req, res) => {
 app.get("/support", (req, res) => {
   res.render("support")
 })
+
+exports.handler = async (event, context) => {
+  return app(event, context);
+};
