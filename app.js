@@ -3,10 +3,7 @@ const app = express()
 const port = 3000 || process.env.PORT
 const azzaih = require("./models/azzaih");
 const mlass = require("./models/mlass");
-const bodyParser = require('body-parser');
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'))
 app.set('view engine', 'ejs')
 
@@ -47,7 +44,7 @@ mongoose.connect("mongodb+srv://Ahmad_RAQ:1w3r5y7i8@cluster0.wrxv6um.mongodb.net
 //index
 
 app.get('/', (req, res) => {
-  res.render("index")
+  res.render("index") 
 })
 
 //mnuat
@@ -157,6 +154,14 @@ app.get("/support", (req, res) => {
   res.render("support")
 })
 
-exports.handler = async (event, context) => {
-  return app(event, context);
-};
+// This file was automatically added by edgio init.
+// You should commit this file to source control.
+import { Router } from '@edgio/core'
+
+export default new Router()
+  .match('/:path*', {
+    origin: {
+      set_origin: 'edgio_serverless',
+    },
+  })
+  .static('public')
